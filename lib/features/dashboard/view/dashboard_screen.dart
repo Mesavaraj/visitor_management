@@ -69,79 +69,69 @@ class DashboardScreen extends StatelessWidget {
             physics: const AlwaysScrollableScrollPhysics(),
             slivers: [
               SliverPadding(
-                padding: const EdgeInsets.fromLTRB(20, 20, 20, 28),
+                padding: const EdgeInsets.fromLTRB(20, 5, 20, 28),
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
-                    // Header
-                    Row(
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          height: 48,
-                          width: 48,
-                          decoration: BoxDecoration(
-                            color: theme.colorScheme.primary,
-                            borderRadius: BorderRadius.circular(14),
-                          ),
-                          child: const Icon(
-                            Icons.apartment_rounded,
-                            color: Colors.white,
-                            size: 27,
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        const Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
                                 'Visitor Management',
                                 style: TextStyle(
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w700,
+                                  letterSpacing: -0.6,
+                                  color: theme.colorScheme.onSurface,
                                 ),
                               ),
-                              SizedBox(height: 3),
-                              Text(
-                                'Front Desk Dashboard',
-                                style: TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: 13,
-                                ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 8,
                               ),
-                            ],
+                              decoration: BoxDecoration(
+                                color:
+                                    theme.colorScheme.surfaceContainerHighest,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.calendar_today_rounded,
+                                    size: 15,
+                                    color: theme.colorScheme.primary,
+                                  ),
+                                  const SizedBox(width: 7),
+                                  Text(
+                                    DateFormat('dd MMM yyyy').format(today),
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                      color: theme.colorScheme.onSurface,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          'Manage visitors and daily check-ins',
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: theme.colorScheme.onSurfaceVariant,
                           ),
                         ),
-                        IconButton(
-                          tooltip: 'Refresh dashboard',
-                          onPressed: () => onRefresh(),
-                          icon: const Icon(Icons.refresh_rounded),
-                        ),
+                        const SizedBox(height: 20),
                       ],
                     ),
 
-                    const SizedBox(height: 28),
-
-                    // Welcome section
-                    const Text(
-                      'Good to see you!',
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF172033),
-                      ),
-                    ),
-                    const SizedBox(height: 7),
-                    Text(
-                      DateFormat('EEEE, d MMMM yyyy').format(today),
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.black54,
-                      ),
-                    ),
-
-                    const SizedBox(height: 26),
-
-                    // Statistics heading
                     const Text(
                       "Today's Overview",
                       style: TextStyle(
